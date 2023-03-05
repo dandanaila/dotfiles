@@ -47,4 +47,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export IFS="$IFS-/"
 export PATH="/usr/local/bin:$PATH:/opt/homebrew/bin"
+export EDITOR='vim'
+export VISUAL='vim'
