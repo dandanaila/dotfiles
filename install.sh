@@ -45,16 +45,16 @@ vim +PlugInstall +qall
 echo "Update the plugins for VIM via Plug."
 vim +PlugUpdate +qall
 echo "Ensure that dans-playground is cloned."
-DIR=~/lwcode/dans-playground
-if [ -d "$DIR" ];
-then
-  echo "dans-playground is already cloned."
-else
-  (cd ~lwcode/ && git clone https://github.com/lacework-dev/dans-playground)
-fi
-echo "Fix timezone of machine."
-sudo apt install tzdata << EOF
-  11
-  10
-  11
-EOF
+# DIR=~/lwcode/dans-playground
+# if [ -d "$DIR" ];
+# then
+#   echo "dans-playground is already cloned."
+# else
+#   (cd ~lwcode/ && git clone https://github.com/lacework-dev/dans-playground)
+# fi
+# echo "Fix timezone of machine."
+# sudo apt install tzdata << EOF
+#   11
+#   10
+#   11
+# EOF
