@@ -52,3 +52,9 @@ then
 else
   (cd ~lwcode/ && git clone https://github.com/lacework-dev/dans-playground)
 fi
+echo "Fix timezone of machine."
+sudo apt install tzdata << EOF
+  11
+  10
+  11
+EOF
