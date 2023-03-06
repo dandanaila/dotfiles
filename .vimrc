@@ -81,12 +81,15 @@ silent! helptags ALL
 
 let g:ale_linters = {
 \ 'sh': ['shellcheck'] ,
+\ 'java': ['eclipselsp'] ,
 \ }
 let g:ale_fixers = {
 \ 'sh': ['shfmt'],
+\ 'java': ['google_java_format'],
 \}
 
 let g:ale_sh_shfmt_options='-i 2'
+let g:ale_java_eclipselsp_path='~/lwcode/eclipselsp'
 
 " Move between warnings or errors with ALENext and ALEPrevious
 nmap <silent> <leader>aj :ALENext<cr>
@@ -94,4 +97,5 @@ nmap <silent> <leader>ak :ALEPrevious<cr>
 " ALEFix will format the file in place
 nmap <silent> <leader>af :ALEFix<cr>
 
-let g:ale_fix_on_save = 1
+
+" let g:ale_fix_on_save = 1
