@@ -51,3 +51,5 @@ export IFS="$IFS-/"
 export PATH="/usr/local/bin:$PATH:$HOME/go/bin"
 export EDITOR='vim'
 export VISUAL='vim'
+
+alias lwbgs=~/lwcode/dans-playground/scripts/gh-search.sh
