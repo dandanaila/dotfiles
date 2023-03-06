@@ -89,7 +89,8 @@ let g:ale_fixers = {
 \}
 
 let g:ale_sh_shfmt_options='-i 2'
-let g:ale_java_eclipselsp_path='~/lwcode/eclipselsp'
+let g:ale_java_eclipselsp_path="~/lwcode/eclipselsp"
+let g:ale_java_eclipselsp_workspace_path="~/lwcode/services/"
 
 " Move between warnings or errors with ALENext and ALEPrevious
 nmap <silent> <leader>aj :ALENext<cr>
