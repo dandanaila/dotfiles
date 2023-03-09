@@ -47,6 +47,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
+my_start_tmux() {
+  dir=${1:-~/lwcode}
+  cd "$dir" && tmux new-session \; \
+    split-window -v \; \
+    select-pane -t 0 \; \
+    resize-pane -D 20 \; \
+    new-window \; \
+    split-window -v \; \
+    previous-window \;
+}
+alias start-tmux=my_start_tmux
+
 # Make CTRL W delete previous word where word is defined to be alpha-numerical
 # string (man readline).
 stty werase undef
