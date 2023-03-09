@@ -47,9 +47,24 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export IFS="$IFS-/"
+# Make CTRL W delete previous word where word is defined to be alpha-numerical
+# string (man readline).
+stty werase undef
+bind '\C-w:backward-kill-word'
+
 export PATH="/usr/local/bin:$PATH:$HOME/go/bin"
 export EDITOR='vim'
 export VISUAL='vim'
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto/
 
 alias lwbgs=~/lwcode/dans-playground/scripts/gh-search.sh
+alias format_java="JAVA_HOME=/usr/lib/jvm/jdk-19 google-java-format -i -a"
+alias git_sl="git log --graph --oneline --all"
+
+export AWS_PROFILE=lacework-production
+export AWS_SDK_LOAD_CONFIG=true # Needed for some tools to use SSO auth
+export LW_AWS_CREDENTIALS_FILE=~/.aws/credentials
+
+export HOST=localhost
+export WAREHOUSE=DEV_TEST
+export LW_HOST_ENV_TYPE=local
