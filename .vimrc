@@ -98,3 +98,5 @@ nmap <silent> <leader>af :ALEFix<cr>
 
 
 " let g:ale_fix_on_save = 1
+
+nmap <F4> :silent !tmux send-keys -t "{next}" "grep -Irn " <cword> " ." Enter<CR><C-l><CR>

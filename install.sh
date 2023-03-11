@@ -14,6 +14,9 @@ sudo apt install shellcheck
 # Extra: A shell parser, formatter, and interpreter. Supports POSIX Shell,
 # Bash, and mksh.
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
+echo "Install tabname plugin."
+mkdir ~/.vim/plugin/
+wget -O ~/.vim/plugin/tabname.vim https://www.vim.org/scripts/download_script.php?src_id=6284
 echo "Install Java code formatter."
 brew install google-java-format
 echo "Installing Java19 as it is dependency for eclipselsp."
