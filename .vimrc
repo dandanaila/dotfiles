@@ -15,6 +15,9 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 autocmd BufWritePre * :%s/\s\+$//e
 
+" Bash specific overrides.
+autocmd filetype sh :set fdm=indent | set tabstop=2 | set shiftwidth=2 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+
 " Python specific overrides.
 autocmd filetype python :set fdm=indent | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
 autocmd filetype python nmap <F7> :!python %<CR>
@@ -69,6 +72,7 @@ call plug#begin()
 
 Plug 'dense-analysis/ale'
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+Plug 'cappyzawa/starlark.vim'
 
 call plug#end()
 

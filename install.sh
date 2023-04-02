@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./set_dotfiles.sh
+
 # Install Plug, a plugin manager for VIM.
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
