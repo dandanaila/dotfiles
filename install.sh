@@ -61,3 +61,6 @@ echo "Fix timezone of machine."
 sudo apt-get install debconf-doc
 sudo ln -fs /usr/share/zoneinfo/US/Pacific /etc/localtime
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends tzdata
+echo "Install JWT cli."
+go get github.com/golang-jwt/jwt/cmd/jwt
+go install github.com/golang-jwt/jwt/cmd/jwt

@@ -4,7 +4,7 @@ ignore_list=("." ".." ".git" ".gitignore")
 
 for FILE in .*; do
   should_ignore=0
-  for elem in ${ignore_list[@]}; do
+  for elem in "${ignore_list[@]}"; do
     if [[ "$FILE" = "$elem" ]]; then
       should_ignore=1
       break
@@ -17,5 +17,5 @@ for FILE in .*; do
     continue
   fi
   echo "Copying file $FILE to ~/$FILE"
-  cp $FILE ~/$FILE
+  ln "$FILE" "$HOME/$FILE"
 done
