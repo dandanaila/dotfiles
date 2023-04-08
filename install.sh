@@ -55,7 +55,7 @@ if [ -d "$DIR" ];
 then
   echo "dans-playground is already cloned."
 else
-  (cd ~lwcode/ && git clone https://github.com/lacework-dev/dans-playground)
+  (cd ~/lwcode/ && git clone https://github.com/lacework-dev/dans-playground)
 fi
 echo "Fix timezone of machine."
 sudo apt-get install debconf-doc
