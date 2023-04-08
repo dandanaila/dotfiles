@@ -15,6 +15,10 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 autocmd BufWritePre * :%s/\s\+$//e
 
+" Starlark
+au BufNewFile,BufRead *.tilt setlocal filetype=starlark
+autocmd filetype starlark :set fdm=indent | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+
 " Bash specific overrides.
 autocmd filetype sh :set fdm=indent | set tabstop=2 | set shiftwidth=2 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
 
