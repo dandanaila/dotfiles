@@ -17,10 +17,15 @@ for FILE in .*; do
     continue
   fi
   new_location="$HOME/$FILE"
-  if [[ -f "$new_location" ]]; then
-    echo "Skipping linking for '$FILE' as '$new_location' already exists."
-  else
-    echo "Linking $FILE to $new_location"
-    ln "$FILE" "$HOME/$FILE"
+  cur_location="$PWD/$FILE"
+  if [[ -L "$new_location" ]]; then
+    echo "'$new_location' is already a link!"
+    continue
   fi
+  if [[ -f "$new_location" ]]; then
+    rm -rf "$new_location"
+    echo "'$new_location' is a file (not a link). Replacing it with a symlink."
+  fi
+  echo "Symlinking '$cur_location' to '$new_location'"
+  ln -s "$cur_location" "$new_location"
 done
