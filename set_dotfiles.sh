@@ -16,6 +16,11 @@ for FILE in .*; do
   if [[ should_ignore -eq 1 ]]; then
     continue
   fi
-  echo "Copying file $FILE to ~/$FILE"
-  ln "$FILE" "$HOME/$FILE"
+  new_location="$HOME/$FILE"
+  if [[ -f "$new_location" ]]; then
+    echo "Skipping linking for '$FILE' as '$new_location' already exists."
+  else
+    echo "Linking $FILE to $new_location"
+    ln "$FILE" "$HOME/$FILE"
+  fi
 done
