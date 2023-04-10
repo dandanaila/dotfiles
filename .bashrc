@@ -64,7 +64,20 @@ alias start-tmux=my_start_tmux
 stty werase undef
 bind '\C-w:backward-kill-word'
 
-export PATH="/usr/local/bin:$PATH:$HOME/go/bin"
+add_to_path() {
+  if ! [[ "$PATH" == *"$1"* ]]; then
+    PATH+=":$1"
+  fi
+}
+
+if ! [[ "$PATH" == "/usr/local/bin"* ]]; then
+  PATH="/usr/local/bin:$PATH"
+fi
+add_to_path "$HOME/go/bin"
+if [[ -n $HOMEBREW_PREFIX ]]; then
+  add_to_path "$HOMEBREW_PREFIX/bin"
+fi
+export PATH
 export EDITOR='vim'
 export VISUAL='vim'
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto/
