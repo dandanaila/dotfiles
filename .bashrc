@@ -83,7 +83,7 @@ export VISUAL='vim'
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto/
 
 alias lwbgs=~/lwcode/dans-playground/scripts/gh-search.sh
-alias format_java="JAVA_HOME=/usr/lib/jvm/jdk-19 google-java-format -i -a"
+alias format_java="JAVA_HOME=/usr/lib/jvm/jdk-20 google-java-format -i -a"
 alias git_sl="git log --graph --oneline --branches"
 
 export AWS_SDK_LOAD_CONFIG=true # Needed for some tools to use SSO auth
