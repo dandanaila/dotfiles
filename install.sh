@@ -13,6 +13,8 @@ install_cmd() {
   echo "[INSTALL][END] $name"
 }
 
+source $HOME/.bashrc
+
 ./set_dotfiles.sh
 
 echo "Install Plug, a plugin manager for VIM."
