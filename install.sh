@@ -48,23 +48,23 @@ install_cmd "jwt" "go install github.com/golang-jwt/jwt/cmd/jwt@latest"
 install_cmd "google-java-format" "brew install google-java-format"
 
 echo "---------------------------------------"
-echo "[INSTALL][START] jdk-19."
-if [[ -d "/usr/lib/jvm/jdk-19" ]]; then
-  echo "jdk-19 is already installed."
+echo "[INSTALL][START] jdk-20."
+if [[ -d "/usr/lib/jvm/jdk-20" ]]; then
+  echo "jdk-20 is already installed."
 else
   DIR=~/lwcode/java
   mkdir "$DIR"
   (cd "$DIR" && \
-    wget https://download.oracle.com/java/19/latest/jdk-19_linux-x64_bin.deb)
-  yes | sudo apt install "$DIR"/jdk-19_linux-x64_bin.deb
-  sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-19/bin/java 1
-  sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-19/bin/javac 1
-  sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-19/bin/jar 1
+    wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.deb)
+  yes | sudo apt install "$DIR"/jdk-20_linux-x64_bin.deb
+  sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-20/bin/java 1
+  sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-20/bin/javac 1
+  sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-20/bin/jar 1
   echo 2 | sudo update-alternatives --config java
   echo 2 | sudo update-alternatives --config javac
   echo 2 | sudo update-alternatives --config jar
 fi
-echo "[INSTALL][END] jdk-19."
+echo "[INSTALL][END] jdk-20."
 
 echo "---------------------------------------"
 echo "[INSTALL][START] Vim plugins."
