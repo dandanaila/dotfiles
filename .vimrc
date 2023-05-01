@@ -17,24 +17,29 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Starlark
 au BufNewFile,BufRead *.tilt setlocal filetype=starlark
-autocmd filetype starlark :set fdm=indent | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+autocmd filetype starlark :set fdm=indent | set textwidth=80 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+autocmd filetype starlark match OverLength /\%81v.\+/
 
 " Bash specific overrides.
-autocmd filetype sh :set fdm=indent | set tabstop=2 | set shiftwidth=2 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+autocmd filetype sh :set fdm=indent | set textwidth=80 | set tabstop=2 | set shiftwidth=2 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+autocmd filetype sh match OverLength /\%81v.\+/
 
 " Python specific overrides.
-autocmd filetype python :set fdm=indent | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+autocmd filetype python :set fdm=indent | set textwidth=80 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
 autocmd filetype python nmap <F7> :!python %<CR>
+autocmd filetype python match OverLength /\%81v.\+/
 
 " C++ specific overrides.
-autocmd filetype cpp :set fdm=syntax | map <C-u> :s/^\/\///<CR>:noh<CR> | map <C-c> :s/^/\/\//<CR>:noh<CR>
+autocmd filetype cpp :set fdm=syntax | set textwidth=80 | map <C-u> :s/^\/\///<CR>:noh<CR> | map <C-c> :s/^/\/\//<CR>:noh<CR>
 autocmd filetype cpp nmap <F7> :!g++ -std=c++11 %<CR>
+autocmd filetype cpp match OverLength /\%81v.\+/
 
 " Java specific overrides.
-autocmd filetype java :set fdm=syntax | set tabstop=4 | set shiftwidth=4 | map <C-u> :s/^\/\///<CR>:noh<CR> | map <C-c> :s/^/\/\//<CR>:noh<CR>
+autocmd filetype java :set fdm=syntax | set tabstop=4 | set shiftwidth=4 | set textwidth=100 | map <C-u> :s/^\/\///<CR>:noh<CR> | map <C-c> :s/^/\/\//<CR>:noh<CR>
 autocmd filetype java match OverLength /\%101v.\+/
 
-autocmd filetype yaml :set fdm=indent | set tabstop=2 | set shiftwidth=2
+autocmd filetype yaml :set fdm=indent | set tabstop=2 | set shiftwidth=2 | set textwidth=80
+autocmd filetype yaml match OverLength /\%81v.\+/
 
 nmap <F5>  :set foldlevel=0
 nmap <F8>  :!make run<CR>
