@@ -53,10 +53,16 @@ if [[ -d "/usr/lib/jvm/jdk-20" ]]; then
   echo "jdk-20 is already installed."
 else
   DIR=~/lwcode/java
-  mkdir "$DIR"
-  (cd "$DIR" && \
-    wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.deb)
-  yes | sudo apt install "$DIR"/jdk-20_linux-x64_bin.deb
+  PKG_NAME=jdk-20_linux-x64_bin.deb
+  JAVA_PKG=$DIR/$PKG_NAME
+  if [[ -f "$JAVA_PKG" ]]; then
+    echo "Package is already downloaded. Skipping that."
+  else
+    mkdir -p "$DIR"
+    (cd "$DIR" && \
+      wget https://download.oracle.com/java/20/latest/$PKG_NAME)
+  fi
+  yes | sudo apt install "$JAVA_PKG"
   sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-20/bin/java 1
   sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-20/bin/javac 1
   sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/jdk-20/bin/jar 1
