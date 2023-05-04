@@ -15,8 +15,19 @@ install_cmd() {
 
 ./set_dotfiles.sh
 
+which go
+which brew
+
+source ~/.bashrc
+
+which go
+which brew
+
 alias brew=/home/linuxbrew/.linuxbrew/bin/brew
 alias go=/home/linuxbrew/.linuxbrew/bin/go
+
+which go
+which brew
 
 echo "Install Plug, a plugin manager for VIM."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
