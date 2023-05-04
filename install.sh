@@ -15,20 +15,6 @@ install_cmd() {
 
 ./set_dotfiles.sh
 
-which go
-which brew
-
-source ~/.bashrc
-
-which go
-which brew
-
-alias brew=/home/linuxbrew/.linuxbrew/bin/brew
-alias go=/home/linuxbrew/.linuxbrew/bin/go
-
-which go
-which brew
-
 echo "Install Plug, a plugin manager for VIM."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -45,7 +31,7 @@ install_cmd "shellcheck" "sudo apt install shellcheck"
 # Integrated in VIM via ALE as bash formatter.
 # Extra: A shell parser, formatter, and interpreter. Supports POSIX Shell,
 # Bash, and mksh.
-install_cmd "shfmt" "go install mvdan.cc/sh/v3/cmd/shfmt@latest"
+install_cmd "shfmt" "/home/linuxbrew/.linuxbrew/bin/go install mvdan.cc/sh/v3/cmd/shfmt@latest"
 
 echo "---------------------------------------"
 echo "[INSTALL][START] tabname plugin."
@@ -57,9 +43,9 @@ else
   wget -O ~/.vim/plugin/tabname.vim https://www.vim.org/scripts/download_script.php?src_id=6284
 fi
 
-install_cmd "jwt" "go install github.com/golang-jwt/jwt/cmd/jwt@latest"
+install_cmd "jwt" "/home/linuxbrew/.linuxbrew/bin/go install github.com/golang-jwt/jwt/cmd/jwt@latest"
 
-install_cmd "google-java-format" "brew install google-java-format"
+install_cmd "google-java-format" "/home/linuxbrew/.linuxbrew/bin/brew install google-java-format"
 
 echo "---------------------------------------"
 echo "[INSTALL][START] jdk-20."
