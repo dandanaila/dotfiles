@@ -77,6 +77,7 @@ add_to_path "$HOME/go/bin"
 if [[ -n $HOMEBREW_PREFIX ]]; then
   add_to_path "$HOMEBREW_PREFIX/bin"
 fi
+add_to_path "/opt/pyenv/versions/3.9.16/bin"
 export PATH
 export EDITOR='vim'
 export VISUAL='vim'
