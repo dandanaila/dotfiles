@@ -26,8 +26,11 @@ sudo apt update
 echo "Checking that latest pip version is used."
 python -m pip install --upgrade pip
 
-echo "Install flake8 is install for Python linting via ALE."
+echo "Install flake8 for Python linting via ALE."
 python -m pip install flake8
+
+echo "Install black for Python fixing via ALE."
+python -m pip install --upgrade black
 
 # Integrated in VIM via ALE as a bash linter.
 # Extra: This is an open source static analysis tool that automatically finds

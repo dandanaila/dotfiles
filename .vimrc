@@ -25,7 +25,7 @@ autocmd filetype sh :set fdm=indent | set textwidth=80 | set tabstop=2 | set shi
 autocmd filetype sh match OverLength /\%81v.\+/
 
 " Python specific overrides.
-autocmd filetype python :set fdm=indent | set textwidth=90 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+autocmd filetype python :set fdm=indent | set textwidth=80 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
 autocmd filetype python nmap <F7> :!python %<CR>
 autocmd filetype python match OverLength /\%81v.\+/
 
@@ -98,6 +98,11 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \ 'sh': ['shfmt'],
 \ 'java': ['google_java_format'],
+\ 'python': [
+\   'black',
+\   'remove_trailing_lines',
+\   'trim_whitespace',
+\ ],
 \}
 
 let g:ale_sh_shfmt_options='-i 2'
