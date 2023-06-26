@@ -24,13 +24,13 @@ echo "Update the package sources list with the latest versions of the packages"\
 sudo apt update
 
 echo "Checking that latest pip version is used."
-python -m pip install --upgrade pip
+/opt/pyenv/shims/python -m pip install --upgrade pip
 
 echo "Install flake8 for Python linting via ALE."
-python -m pip install flake8
+/opt/pyenv/shims/python -m pip install flake8
 
 echo "Install black for Python fixing via ALE."
-python -m pip install --upgrade black
+/opt/pyenv/shims/python -m pip install --upgrade black
 
 # Integrated in VIM via ALE as a bash linter.
 # Extra: This is an open source static analysis tool that automatically finds
