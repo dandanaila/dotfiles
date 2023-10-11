@@ -78,6 +78,7 @@ if [[ -n $HOMEBREW_PREFIX ]]; then
   add_to_path "$HOMEBREW_PREFIX/bin"
 fi
 add_to_path "/opt/pyenv/versions/3.9.16/bin"
+add_to_path "~/.local/bin"
 export PATH
 export EDITOR='vim'
 export VISUAL='vim'
@@ -93,3 +94,44 @@ export LW_AWS_CREDENTIALS_FILE=~/.aws/credentials
 export HOST=localhost
 export WAREHOUSE=DEV_TEST
 export LW_HOST_ENV_TYPE=local
+
+# login to platform/dev
+alias argologin-dev='argocd login argocd.ops.lacework.engineering  --grpc-web-root-path /platform/dev --sso'
+# sync an app given environment and app name
+argosync() {
+    if [ $# -lt 2 ]; then
+        echo "Usage: argosync env appname [other args]"
+        echo "Example: argosync gdevus1 gbm-runner [--async]"
+        return 1
+    fi
+
+    local env="$1"
+    shift
+
+    local appname="$1"
+    shift
+
+    echo Running: argocd app sync argocd-platform-dev/"$appname"-"$env" "$@"
+    argocd app sync argocd-platform-dev/"$appname"-"$env" "$@"
+}
+# change target revision given environment, appname and branch
+argotest() {
+    if [ $# -lt 3 ]; then
+        echo "Usage: argotest env appname branchname [other args]"
+        echo "Example: argosync gdevus1 gbm-runner GLACE-123 [--async]"
+        return 1
+    fi
+
+    local env="$1"
+    shift
+
+    local appname="$1"
+    shift
+
+    local branchname="$1"
+    shift
+
+    echo Setting targetRevision: argocd app patch argocd-platform-dev/"$appname"-"$env" --patch '[{"op": "replace", "path": "/spec/source/targetRevision", "value": "'"$branchname"'"}]'
+    argocd app patch argocd-platform-dev/"$appname"-"$env" --patch '[{"op": "replace", "path": "/spec/source/targetRevision", "value": "'"$branchname"'"}]'
+    argosync $env $appname
+}

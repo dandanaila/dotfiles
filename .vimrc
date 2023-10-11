@@ -17,7 +17,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Starlark
 au BufNewFile,BufRead *.tilt setlocal filetype=starlark
-autocmd filetype starlark :set fdm=indent | set textwidth=80 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR>
+au BufNewFile,BufRead *.bazel setlocal filetype=starlark
+autocmd filetype starlark :set fdm=indent | set textwidth=80 | map <C-u> :s/^#//<CR>:noh<CR> | map <C-c> :s/^/#/<CR>:noh<CR> | set expandtab
 autocmd filetype starlark match OverLength /\%81v.\+/
 
 " Bash specific overrides.
@@ -40,6 +41,12 @@ autocmd filetype java match OverLength /\%101v.\+/
 
 autocmd filetype yaml :set fdm=indent | set tabstop=2 | set shiftwidth=2 | set textwidth=80
 autocmd filetype yaml match OverLength /\%81v.\+/
+
+" Go specific overrides
+autocmd filetype go :set fdm =syntax | set noexpandtab | set textwidth=100 | match OverLength /\%101v.\+/
+
+" Go specific overrides
+autocmd filetype rust :set fdm=syntax | set tabstop=4 | set shiftwidth=4 | set textwidth=100 | match OverLength /\%101v.\+/ | set expandtab | map <C-u> :s/^\/\///<CR>:noh<CR> | map <C-c> :s/^/\/\//<CR>:noh<CR>
 
 nmap <F5>  :set foldlevel=0
 nmap <F8>  :!make run<CR>

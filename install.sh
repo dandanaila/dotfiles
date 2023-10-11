@@ -104,3 +104,10 @@ sudo apt-get install debconf-doc
 sudo ln -fs /usr/share/zoneinfo/US/Pacific /etc/localtime
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends tzdata
 echo "[INSTALL][END] Timezone."
+
+echo "---------------------------------------"
+echo "[INSTALL][START] argocd cli."
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+echo "[INSTALL][END] argocd cll."
