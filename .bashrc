@@ -87,6 +87,7 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto/
 alias lwbgs=~/lwcode/dans-playground/scripts/gh-search.sh
 alias format_java="JAVA_HOME=/usr/lib/jvm/jdk-20 google-java-format -i -a"
 alias git_sl="git log --graph --oneline --branches"
+alias git_rebase_latest='CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"; git checkout main && git pull origin main && git checkout "$CURRENT_BRANCH" && git rebase -i main'
 
 export AWS_SDK_LOAD_CONFIG=true # Needed for some tools to use SSO auth
 export LW_AWS_CREDENTIALS_FILE=~/.aws/credentials
