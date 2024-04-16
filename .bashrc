@@ -86,6 +86,7 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto/
 
 alias lwbgs=~/lwcode/dans-playground/scripts/gh-search.sh
 alias format_java="JAVA_HOME=/usr/lib/jvm/jdk-20 google-java-format -i -a"
+alias rm_swap="find . -type f -name '*.sw[klmnop]' -delete"
 alias git_sl="git log --graph --oneline --branches"
 alias git_rebase_latest='CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"; git checkout main && git pull origin main && git checkout "$CURRENT_BRANCH" && git rebase -i main'
 
@@ -98,6 +99,7 @@ export LW_HOST_ENV_TYPE=local
 
 # login to platform/dev
 alias argologin-dev='argocd login argocd.ops.lacework.engineering  --grpc-web-root-path /platform/dev --sso'
+alias argologin-prod='argocd login argocd.ops.lacework.engineering --grpc-web-root-path /platform/prod --sso'
 # sync an app given environment and app name
 argosync() {
     if [ $# -lt 2 ]; then
@@ -112,8 +114,8 @@ argosync() {
     local appname="$1"
     shift
 
-    echo Running: argocd app sync argocd-platform-dev/"$appname"-"$env" "$@"
-    argocd app sync argocd-platform-dev/"$appname"-"$env" "$@"
+    echo Running: argocd app sync --force argocd-platform-dev/"$appname"-"$env" "$@"
+    argocd app sync --force argocd-platform-dev/"$appname"-"$env" "$@"
 }
 # change target revision given environment, appname and branch
 argotest() {
@@ -134,5 +136,25 @@ argotest() {
 
     echo Setting targetRevision: argocd app patch argocd-platform-dev/"$appname"-"$env" --patch '[{"op": "replace", "path": "/spec/source/targetRevision", "value": "'"$branchname"'"}]'
     argocd app patch argocd-platform-dev/"$appname"-"$env" --patch '[{"op": "replace", "path": "/spec/source/targetRevision", "value": "'"$branchname"'"}]'
+    argosync $env $appname
+}
+argotestprod() {
+    if [ $# -lt 3 ]; then
+        echo "Usage: argotest env appname branchname [other args]"
+        echo "Example: argosync gdevus1 gbm-runner GLACE-123 [--async]"
+        return 1
+    fi
+
+    local env="$1"
+    shift
+
+    local appname="$1"
+    shift
+
+    local branchname="$1"
+    shift
+
+    echo Setting targetRevision: argocd app patch argocd-platform-prod/"$appname"-"$env" --patch '[{"op": "replace", "path": "/spec/source/targetRevision", "value": "'"$branchname"'"}]'
+    argocd app patch argocd-platform-prod/"$appname"-"$env" --patch '[{"op": "replace", "path": "/spec/source/targetRevision", "value": "'"$branchname"'"}]'
     argosync $env $appname
 }
