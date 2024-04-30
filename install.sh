@@ -112,7 +112,4 @@ sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 rm argocd-linux-amd64
 echo "[INSTALL][END] argocd cli."
 
-echo "---------------------------------------"
-echo "[INSTALL][START] k9s cli."
-brew install derailed/k9s/k9s
-echo "[INSTALL][END] k9s cll."
+install_cmd "k9s_cli" "/home/linuxbrew/.linuxbrew/bin/brew install derailed/k9s/k9s"
