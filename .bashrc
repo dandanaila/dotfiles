@@ -79,6 +79,7 @@ if [[ -n $HOMEBREW_PREFIX ]]; then
 fi
 add_to_path "/opt/pyenv/versions/3.9.16/bin"
 add_to_path "~/.local/bin"
+add_to_path "/home/linuxbrew/.linuxbrew/bin"
 export PATH
 export EDITOR='vim'
 export VISUAL='vim'
