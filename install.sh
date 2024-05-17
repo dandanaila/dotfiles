@@ -82,6 +82,20 @@ fi
 echo "[INSTALL][END] jdk-20."
 
 echo "---------------------------------------"
+echo "[INSTALL][START] Upgrade vim to latest."
+echo "Add the repository for the latest version of VIM."
+sudo add-apt-repository ppa:jonathonf/vim -y
+echo "Update the vim package with the latest versions in the repositories."
+sudo apt upgrade vim -y
+echo "[INSTALL][END] Vim plugins."
+
+echo "---------------------------------------"
+echo "[INSTALL][START] Install vim plugin."
+git clone https://github.com/github/copilot.vim.git \
+    ~/.vim/pack/github/start/copilot.vim
+echo "[INSTALL][END] Vim plugin."
+
+echo "---------------------------------------"
 echo "[INSTALL][START] Vim plugins."
 echo "Install the plugins for VIM via Plug."
 vim +PlugInstall +qall
